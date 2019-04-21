@@ -1,68 +1,59 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, CardMedia } from '@material-ui/core/';
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  CssBaseline,
-  CardMedia,
-  Button
-} from '@material-ui/core/';
-import { getMovies } from '../actions/moviesActions';
+  setActivePage,
+  setGenre,
+  setYear,
+  getMovies
+} from '../actions/moviesActions';
 import logo from './../accets/logo.svg';
 
 const styles = {
-  root: {
-    display: 'flex',
-    margin: '0 auto',
-    flexGrow: 1
-  },
   toolbar: {
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'center',
     backgroundColor: 'black'
   },
-  grow: {
-    flexGrow: 1
-  },
-  container: {
-    display: 'flex',
-    margin: '0 auto',
-    justifyContent: 'center',
-    paddingTop: '4rem'
-  },
   media: {
-    width: 81,
-    height: 72,
-    margin: '1rem'
+    width: 60,
+    height: 53,
+    margin: '.5rem'
+  },
+  marginLeft: {
+    marginLeft: 30
   }
 };
 
 class Header extends Component {
   handleClick() {
-    // console.log('click and props: ', this.props);
-    this.props.getMovies();
+    console.log('header click');
+    const { setActivePage, setGenre, setYear, getMovies } = this.props;
+    setActivePage(1);
+    setGenre(0);
+    setYear(2018);
+    getMovies(1, 2018);
+    window.scrollTo(0, 0);
   }
   render() {
-    const { classes, items } = this.props;
-    console.log('render: ', items);
+    const { classes } = this.props;
     return (
       <AppBar position="fixed" color="primary">
         <div className={classes.toolbar}>
           <Toolbar>
-            <CardMedia className={classes.media} image={logo} title="Logo" />
-            <div className={classes.grow} />
-            <Typography variant="h6" color="inherit">
-              Sort by
-            </Typography>
-            <div className={classes.grow} />
-            <Button
-              variant="contained"
-              color="default"
-              className={classes.button}
-              onClick={() => this.handleClick()}
-            >
-              Secondary
-            </Button>
+            <Link to={'/'} onClick={() => this.handleClick()}>
+              <CardMedia className={classes.media} image={logo} title="Logo" />
+            </Link>
+
+            <div className={classes.marginLeft}>
+              <Typography variant="h5" color="inherit">
+                Discover New Movies
+              </Typography>
+            </div>
           </Toolbar>
         </div>
       </AppBar>
@@ -70,11 +61,15 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  items: state.movies.items
-});
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+  setYear: PropTypes.func.isRequired,
+  setGenre: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired,
+  getMovies: PropTypes.func.isRequired
+};
 
 export default connect(
-  mapStateToProps,
-  { getMovies }
+  null,
+  { setActivePage, setGenre, setYear, getMovies }
 )(withStyles(styles)(Header));

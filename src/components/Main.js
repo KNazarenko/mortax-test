@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core/';
-import MediaCard from './Card';
+import { Grid } from '@material-ui/core/';
+import { MediaCard, SortPanel } from '.';
 
 const styles = {
   root: {
@@ -13,9 +13,6 @@ const styles = {
     flexGrow: 1,
     width: '100%'
   },
-  grow: {
-    flexGrow: 1
-  },
   container: {
     display: 'flex',
     margin: '0 auto',
@@ -25,12 +22,18 @@ const styles = {
   main: {
     display: 'flex',
     flexDirection: 'column',
-    padding: '2rem'
+    padding: '0 4rem'
+  },
+  sortPanel: {
+    display: 'flex',
+    margin: '0 auto',
+    justifyContent: 'center'
   },
   cards: {
     display: 'flex',
     flexWrap: 'wrap',
     margin: '0 auto',
+    marginTop: '1.5rem',
     justifyContent: 'center'
   }
 };
@@ -40,15 +43,11 @@ class Main extends Component {
     const { classes, items } = this.props;
     return (
       <div className={classes.root} elevation={1}>
-        <Grid item xl={8} lg={10} md={12} className={classes.container}>
+        <Grid item xl={10} className={classes.container}>
           <div className={classes.main}>
-            <Typography
-              variant="h4"
-              gutterBottom
-              style={{ textAlign: 'center' }}
-            >
-              Discover New Movies
-            </Typography>
+            <div className={classes.sortPanel}>
+              <SortPanel />
+            </div>
             <div className={classes.cards}>
               {items.map(item => (
                 <MediaCard key={item.id} {...item} />

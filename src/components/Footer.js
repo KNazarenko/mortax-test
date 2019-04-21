@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { CardMedia } from '@material-ui/core/';
 import logo from './../accets/logo.svg';
@@ -11,14 +11,14 @@ const styles = {
     justifyContent: 'flex-end',
     width: '100%',
     backgroundImage: `url(${footer})`,
-    padding: '1rem',
-    color: 'white',
-    height: 400
+    backgroundSize: 'cover',
+    // color: 'white',
+    height: 200
   },
   media: {
-    width: 181,
-    height: 160,
-    marginRight: '10rem',
+    width: 140,
+    height: 124,
+    marginRight: '6rem',
     alignSelf: 'center'
   }
 };

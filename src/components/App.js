@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core/';
-import { getMovies } from './../actions/moviesActions';
-import Header from './Header';
-import Main from './Main';
-import Pagination from './PaginationMap';
-import Footer from './Footer';
+import { getMovies, setActivePage } from './../actions/moviesActions';
+import { Footer, Header, Main, Pagination } from '.';
 
 const styles = {
   root: {
@@ -23,8 +21,8 @@ const styles = {
 
 class App extends Component {
   componentDidMount() {
-    this.props.getMovies();
-    // window.scrollTo(0, 0);
+    const { activePage, activeYear } = this.props;
+    this.props.getMovies(activePage, activeYear);
   }
 
   render() {
@@ -48,10 +46,20 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  items: state.movies.items
+  items: state.movies.itemsOnPage,
+  activePage: state.movies.activePage,
+  activeYear: state.movies.year
 });
+
+App.propTypes = {
+  items: PropTypes.array.isRequired,
+  activePage: PropTypes.number.isRequired,
+  activeYear: PropTypes.number.isRequired,
+  getMovies: PropTypes.func.isRequired,
+  setActivePage: PropTypes.func.isRequired
+};
 
 export default connect(
   mapStateToProps,
-  { getMovies }
+  { getMovies, setActivePage }
 )(withStyles(styles)(App));
