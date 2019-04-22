@@ -1,65 +1,50 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core/';
-import { getMovies, setActivePage } from './../actions/moviesActions';
-import { Footer, Header, Main, Pagination } from '.';
+import { Footer, Header, Main, Error } from '.';
 
 const styles = {
   root: {
-    minHeight: '100%',
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    margin: '0 auto',
-    width: '100%',
-    flexGrow: 1
+    width: '100%'
+  },
+  content: {
+    flex: '1 0 auto'
+  },
+  footer: {
+    flex: '0 0 auto'
   }
 };
 
-class App extends Component {
-  componentDidMount() {
-    const { activePage, activeYear } = this.props;
-    this.props.getMovies(activePage, activeYear);
-  }
+const App = props => {
+  const { classes } = props;
 
-  render() {
-    const { classes, items } = this.props;
-    console.log('render: ', items);
-    return (
-      <Router>
-        <div className={classes.root}>
-          <CssBaseline />
-          <Header />
+  return (
+    <Router>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Header />
+        <div className={classes.content}>
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/page/:id" component={Main} />
+            <Route component={Error} />
           </Switch>
-          <Pagination />
+        </div>
+        <div className={classes.footer}>
           <Footer />
         </div>
-      </Router>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  items: state.movies.itemsOnPage,
-  activePage: state.movies.activePage,
-  activeYear: state.movies.year
-});
-
-App.propTypes = {
-  items: PropTypes.array.isRequired,
-  activePage: PropTypes.number.isRequired,
-  activeYear: PropTypes.number.isRequired,
-  getMovies: PropTypes.func.isRequired,
-  setActivePage: PropTypes.func.isRequired
+      </div>
+    </Router>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  { getMovies, setActivePage }
-)(withStyles(styles)(App));
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);

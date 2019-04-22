@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { CardMedia } from '@material-ui/core/';
-import logo from './../accets/logo.svg';
-import footer from './../accets/footer.jpg';
+import logo from './../../accets/logo.svg';
+import footer from './../../accets/footer.jpg';
 
 const styles = {
   root: {
@@ -12,7 +12,6 @@ const styles = {
     width: '100%',
     backgroundImage: `url(${footer})`,
     backgroundSize: 'cover',
-    // color: 'white',
     height: 200
   },
   media: {

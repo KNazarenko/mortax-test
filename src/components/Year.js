@@ -14,42 +14,34 @@ const styles = theme => ({
   }
 });
 
-class Year extends React.Component {
-  render() {
-    const {
-      classes,
-      BootstrapInput,
-      handleChange,
-      years,
-      activeYear
-    } = this.props;
+const Year = props => {
+  const { classes, BootstrapInput, handleChange, years, activeYear } = props;
 
-    return (
-      <FormControl className={classes.form}>
-        <div className={classes.name}>
-          <Typography variant="button" color="inherit">
-            Year
-          </Typography>
-        </div>
-        <Select
-          value={activeYear}
-          onChange={handleChange()}
-          input={<BootstrapInput name="year" />}
-        >
-          <MenuItem value={0}>
-            <em>None</em>
+  return (
+    <FormControl className={classes.form}>
+      <div className={classes.name}>
+        <Typography variant="button" color="inherit">
+          Year
+        </Typography>
+      </div>
+      <Select
+        value={activeYear}
+        onChange={handleChange()}
+        input={<BootstrapInput name="year" />}
+      >
+        <MenuItem value={0}>
+          <em>None</em>
+        </MenuItem>
+
+        {years.map(year => (
+          <MenuItem key={year} value={year}>
+            {year}
           </MenuItem>
-
-          {years.map(year => (
-            <MenuItem key={year} value={year}>
-              {year}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    );
-  }
-}
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
 
 Year.propTypes = {
   classes: PropTypes.object.isRequired

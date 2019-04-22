@@ -61,32 +61,26 @@ class SortPanel extends Component {
   };
 
   handleChangeYear = () => event => {
-    const {
-      activePage,
-      activeGenre,
-      setYear,
-      getMovies,
-      getMoviesFilters
-    } = this.props;
+    const { activeGenre, setYear, getMovies, getMoviesFilters } = this.props;
     setYear(event.target.value);
 
     if (activeGenre) {
-      getMoviesFilters(activePage, event.target.value, activeGenre);
+      getMoviesFilters(1, event.target.value, activeGenre);
     } else {
-      getMovies(activePage, event.target.value);
+      getMovies(1, event.target.value);
     }
   };
 
   handleChangeGenre = () => event => {
-    const { activePage, activeYear, setGenre, getMoviesFilters } = this.props;
+    const { activeYear, setGenre, getMoviesFilters } = this.props;
     setGenre(event.target.value);
-    getMoviesFilters(activePage, activeYear, event.target.value);
+    getMoviesFilters(1, activeYear, event.target.value);
   };
 
   render() {
     const { classes, activeYear, activeGenre } = this.props;
     const years = [];
-    let startYear = 2012;
+    let startYear = 1977;
     let endYear = 2019;
     for (let i = 0; i <= endYear - startYear; i++) {
       years[i] = endYear - i;

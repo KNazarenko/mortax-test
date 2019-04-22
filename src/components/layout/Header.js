@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,8 +9,8 @@ import {
   setGenre,
   setYear,
   getMovies
-} from '../actions/moviesActions';
-import logo from './../accets/logo.svg';
+} from '../../actions/moviesActions';
+import logo from './../../accets/logo.svg';
 
 const styles = {
   toolbar: {
@@ -29,37 +29,36 @@ const styles = {
   }
 };
 
-class Header extends Component {
-  handleClick() {
-    console.log('header click');
-    const { setActivePage, setGenre, setYear, getMovies } = this.props;
+const Header = props => {
+  const { classes } = props;
+
+  const handleClick = () => {
+    const { setActivePage, setGenre, setYear, getMovies } = props;
     setActivePage(1);
     setGenre(0);
     setYear(2018);
     getMovies(1, 2018);
     window.scrollTo(0, 0);
-  }
-  render() {
-    const { classes } = this.props;
-    return (
-      <AppBar position="fixed" color="primary">
-        <div className={classes.toolbar}>
-          <Toolbar>
-            <Link to={'/'} onClick={() => this.handleClick()}>
-              <CardMedia className={classes.media} image={logo} title="Logo" />
-            </Link>
+  };
 
-            <div className={classes.marginLeft}>
-              <Typography variant="h5" color="inherit">
-                Discover New Movies
-              </Typography>
-            </div>
-          </Toolbar>
-        </div>
-      </AppBar>
-    );
-  }
-}
+  return (
+    <AppBar position="fixed" color="primary">
+      <div className={classes.toolbar}>
+        <Toolbar>
+          <Link to={'/'} onClick={handleClick}>
+            <CardMedia className={classes.media} image={logo} title="Logo" />
+          </Link>
+
+          <div className={classes.marginLeft}>
+            <Typography variant="h5" color="inherit">
+              Discover New Movies
+            </Typography>
+          </div>
+        </Toolbar>
+      </div>
+    </AppBar>
+  );
+};
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -1,12 +1,13 @@
-import Footer from './Footer';
-import Header from './Header';
+import Footer from './layout/Footer';
+import Header from './layout/Header';
 import Main from './Main';
 import MediaCard from './Card';
-import Pagination from './PaginationBtns';
+import Pagination from './Pagination';
 import SortPanel from './SortPanel';
 import Year from './Year';
 import Genres from './Genres';
 import Search from './Search';
+import Error from './layout/Error';
 
 export {
   Footer,
@@ -17,5 +18,6 @@ export {
   SortPanel,
   Year,
   Genres,
-  Search
+  Search,
+  Error
 };

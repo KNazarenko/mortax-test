@@ -31,7 +31,6 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
     left: 0,
     right: 0
-    // overflow: 'scroll'
   },
   suggestion: {
     display: 'block'
@@ -130,7 +129,6 @@ class Search extends Component {
   }
 
   handleSuggestionsFetchRequested = ({ value }) => {
-    console.log('FetchRequested value: ', value);
     this.props.setKeyword(value);
     this.props.getMoviesByKeyword(value);
     this.setState({
