@@ -1,0 +1,16 @@
+{
+  "main.js": "/moviesdb/static/js/main.8ae50287.chunk.js",
+  "main.js.map": "/moviesdb/static/js/main.8ae50287.chunk.js.map",
+  "runtime~main.js": "/moviesdb/static/js/runtime~main.e66442a2.js",
+  "runtime~main.js.map": "/moviesdb/static/js/runtime~main.e66442a2.js.map",
+  "static/css/2.9f6a3809.chunk.css": "/moviesdb/static/css/2.9f6a3809.chunk.css",
+  "static/js/2.150bb268.chunk.js": "/moviesdb/static/js/2.150bb268.chunk.js",
+  "static/js/2.150bb268.chunk.js.map": "/moviesdb/static/js/2.150bb268.chunk.js.map",
+  "index.html": "/moviesdb/index.html",
+  "precache-manifest.b074174bc52ebaafd24148a24f93af01.js": "/moviesdb/precache-manifest.b074174bc52ebaafd24148a24f93af01.js",
+  "service-worker.js": "/moviesdb/service-worker.js",
+  "static/css/2.9f6a3809.chunk.css.map": "/moviesdb/static/css/2.9f6a3809.chunk.css.map",
+  "static/media/footer.jpg": "/moviesdb/static/media/footer.27eed871.jpg",
+  "static/media/logo.svg": "/moviesdb/static/media/logo.02a9430b.svg",
+  "static/media/index.css": "/moviesdb/static/media/roboto-latin-900italic.bc833e72.woff"
+}
